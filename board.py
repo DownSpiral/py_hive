@@ -53,12 +53,12 @@ class Board:
     elif coord.x != 0:
       tiles.append(self.getTile(coord.x - 1, coord.y))
 
-    # Right 
+    # Right
     if coord.x == self.width and self.wrapping:
       tiles.append(self.getTile(0, coord.y))
     elif coord.x < self.width:
       tiles.append(self.getTile(coord.x + 1, coord.y))
-    
+
     # Down
     if coord.y == 0 and self.wrapping:
       tiles.append(self.getTile(coord.x, self.height - 1))
