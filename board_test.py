@@ -1,5 +1,6 @@
-from board import Coord
 from board import Board
+from coord import Coord
+from tile import Tile
 import unittest
 
 WIDTH = 10

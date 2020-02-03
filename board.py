@@ -1,3 +1,6 @@
+from tile import Tile
+from coord import Coord
+
 class Board:
   def __init__(self, height, width, wrapping=False):
     if height <= 0 or width <= 0:
