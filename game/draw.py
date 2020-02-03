@@ -28,5 +28,5 @@ class Draw:
                 print('down')
 
     def update(self, speed=60):
-        print('update')
         pygame.display.update()
+        self.clock.tick(speed)
