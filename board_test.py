@@ -25,14 +25,14 @@ class TestBoard(unittest.TestCase):
 
     def test_2_get_tile(self):
         x, y = 3, 4
-        subject = self.b.getTile(x, y)
+        subject = self.b.get_tile(x, y)
         self.assertEqual(subject.coord.x, x)
         self.assertEqual(subject.coord.y, y)
 
     def test_3_surrounding_tiles(self):
         x, y = 3, 3
         # This intermediate coord class is kinda annoying to work with.
-        subject = [(tile.coord.x, tile.coord.y) for tile in self.b.surroundingTiles(Coord(x, y))]
+        subject = [(tile.coord.x, tile.coord.y) for tile in self.b.surrounding_tiles(Coord(x, y))]
         for (i, j) in [(2, 3), (4, 3), (3, 2), (3, 4)]:
             self.assertTrue((i, j) in subject)
 
