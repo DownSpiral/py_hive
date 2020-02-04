@@ -1,5 +1,6 @@
 from tile import Tile
 from coord import Coord
+import random
 
 class Board:
   def __init__(self, height, width, wrapping=False):
@@ -29,9 +30,9 @@ class Board:
       tiles.append(self.get_tile(coord.x - 1, coord.y))
 
     # Right
-    if coord.x == self.width and self.wrapping:
+    if coord.x == self.width - 1 and self.wrapping:
       tiles.append(self.get_tile(0, coord.y))
-    elif coord.x < self.width:
+    elif coord.x < self.width - 1:
       tiles.append(self.get_tile(coord.x + 1, coord.y))
 
     # Down
@@ -41,9 +42,14 @@ class Board:
       tiles.append(self.get_tile(coord.x, coord.y - 1))
 
     # Up
-    if coord.y == self.height and self.wrapping:
+    if coord.y == self.height - 1 and self.wrapping:
       tiles.append(self.get_tile(coord.x, 0))
-    elif coord.y < self.height:
+    elif coord.y < self.height - 1:
       tiles.append(self.get_tile(coord.x, coord.y + 1))
 
     return tiles
+
+  def random_empty_tile(self):
+    flat_list = [item for sublist in self.board for item in sublist]
+    random.shuffle(flat_list)
+    return next(tile for tile in flat_list if tile.ant == None)

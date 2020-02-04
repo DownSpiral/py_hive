@@ -16,3 +16,8 @@ class Tile:
       char = "0"
 
     return char
+
+  def to_dict(self):
+    return {
+      
+    }
