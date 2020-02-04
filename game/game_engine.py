@@ -55,11 +55,7 @@ class GameEngine:
             print('up')
 
         if event.type == pygame.KEYDOWN:
-            self.square(5)
             print('down')
-
-    def square(self, s):
-        pygame.draw.rect(self.display, (255, 0, 0), pygame.Rect(1, 1, s, s))
 
     def render_board(self):
         self.display.fill((255,255,255))
@@ -70,4 +66,8 @@ class GameEngine:
     def render_tile(self, tile):
         (x, y) = (tile.coord.x, tile.coord.y)
         (rx, ry) = (self.ppt * x, self.ppt * y)
-        pygame.draw.rect(self.display, tile.color(), pygame.Rect(rx, ry, self.ppt, self.ppt))
+
+        self.square(rx, ry, self.ppt, tile.color())
+
+    def render_square(self, x, y, length, color):
+        pygame.draw.rect(self.display, color, pygame.Rect(x, y, length, length))
