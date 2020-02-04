@@ -8,17 +8,17 @@ class Board:
         self.height = height
         self.width = width
         self.wrapping = wrapping
-        self.board = [None] * self.height
+        self.tiles = [None] * self.height
         for i in range(self.height):
-            self.board[i] = [None] * self.width
+            self.tiles[i] = [None] * self.width
             for j in range(self.width):
-                self.board[i][j] = Tile(Coord(j, i), "food", 1)
+                self.tiles[i][j] = Tile(Coord(j, i), "food", 1)
 
     def __str__(self):
-        return '\n'.join(' '.join(map(str, sl)) for sl in self.board)
+        return '\n'.join(' '.join(map(str, sl)) for sl in self.tiles)
 
     def get_tile(self, x, y):
-        return self.board[y][x]
+        return self.tiles[y][x]
 
     def surrounding_tiles(self, coord):
         tiles = []
