@@ -1,4 +1,4 @@
-from coord import Coord
+from common.coord import Coord
 
 class Tile:
   def __init__(self, coord, item=None, item_qty=0, ant=None):

@@ -3,3 +3,6 @@
 
 ##### Pygame
 `pip install git+https://github.com/pygame/pygame.git`
+
+https://hackernoon.com/10-common-security-gotchas-in-python-and-how-to-avoid-them-e19fbe265e03
+https://talkpython.fm/episodes/show/168/10-python-security-holes-and-how-to-plug-them
