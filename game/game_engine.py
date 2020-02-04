@@ -1,18 +1,22 @@
 import pygame
 
+from game.display import Display
+from common.game import Game
 from common.board import Board
 
 class GameEngine:
-    def __init__(self, game, display):
+    def __init__(self, game_settings, display_settings):
+        self.display = Display(display_settings)
+        self.game = Game(game_settings)
+
         self.running = False
+        self.updates = []
+
+        # fps the game runs at
+        # where should this live?
         self.game_speed = 4
-
-        self.display = display
-        self.game = game
-
         # What is this clock? Should we use it for our game clock too?
         self.clock = pygame.time.Clock()
-        self.updates = []
 
     def start(self):
         self.running = True

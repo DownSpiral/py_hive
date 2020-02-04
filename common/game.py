@@ -5,9 +5,9 @@ from common.ant import Ant
 from common.player import Player
 
 class Game:
-    def __init__(self, settings, players):
+    def __init__(self, settings):
         self.settings = settings
-        self.players = players
+        self.players = settings["players"]
         self.board = Board(settings["board_height"], settings["board_width"], True)
         self.game_tick = 0
         self.actions = []
