@@ -23,4 +23,7 @@ class Tile:
         }
 
     def color(self):
-        return (255, 0, 0)
+        if self.ant is not None:
+            return self.ant.color()
+        else:
+            return (150, 75, 0)

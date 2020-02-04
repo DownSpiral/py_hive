@@ -2,7 +2,7 @@ from game.game_engine import GameEngine
 from common.player import Player
 
 if __name__ == '__main__':
-    game_settings = { "height": 4, "width": 4 }
+    game_settings = { "height": 10, "width": 10 }
     players = [
         Player(1, "scripts.foo.bar", "red"),
         Player(2, "scripts.bar.baz", "blue")

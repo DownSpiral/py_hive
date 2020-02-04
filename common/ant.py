@@ -28,3 +28,6 @@ class Ant:
             "item": self.item,
             "item_qty": self.item_qty,
         })
+
+    def color(self):
+        return (255, 0, 0)
