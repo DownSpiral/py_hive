@@ -17,3 +17,6 @@ class Tile:
       char = "0"
 
     return char
+
+  def color(self):
+    return (255, 0, 0)

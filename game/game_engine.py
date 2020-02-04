@@ -5,6 +5,7 @@ from common.board import Board
 class Game:
     def __init__(self):
         self.turn = 0
+        self.board = Board(10,10)
 
     def update(self):
         self.turn += 1
@@ -14,8 +15,13 @@ class GameEngine:
     def __init__(self):
         if not pygame.get_init():
             pygame.init()
+
+        # pixels per tile
+        self.ppt = 64
+
         self.running = False
-        self.game_speed = 1
+        self.game_speed = 4
+
         self.width = 800
         self.height = 600
         self.display = pygame.display.set_mode((self.width, self.height))
@@ -26,6 +32,8 @@ class GameEngine:
 
     def start(self):
         self.running = True
+
+        self.render_board()
 
         while self.running:
             # Process events
@@ -60,3 +68,14 @@ class GameEngine:
 
     def square(self, s):
         pygame.draw.rect(self.display, (255, 0, 0), pygame.Rect(1, 1, s, s))
+
+    def render_board(self):
+        self.display.fill((255,255,255))
+        for row in self.game.board.tiles:
+            for tile in row:
+                self.render_tile(tile)
+
+    def render_tile(self, tile):
+        (x, y) = (tile.coord.x, tile.coord.y)
+        (rx, ry) = (self.ppt * x, self.ppt * y)
+        pygame.draw.rect(self.display, tile.color(), pygame.Rect(rx, ry, self.ppt, self.ppt))
