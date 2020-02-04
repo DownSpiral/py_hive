@@ -1,18 +1,10 @@
 import pygame
 
+from common.game import Game
 from common.board import Board
 
-class Game:
-    def __init__(self):
-        self.turn = 0
-        self.board = Board(10,10)
-
-    def update(self):
-        self.turn += 1
-        print(self.turn)
-
 class GameEngine:
-    def __init__(self):
+    def __init__(self, game_settings, players):
         if not pygame.get_init():
             pygame.init()
 
@@ -22,10 +14,10 @@ class GameEngine:
         self.running = False
         self.game_speed = 4
 
-        self.width = 800
-        self.height = 600
+        self.width = 1200
+        self.height = 800
         self.display = pygame.display.set_mode((self.width, self.height))
-        self.game = Game()
+        self.game = Game(game_settings, players)
 
         # What is this clock? Should we use it for our game clock too?
         self.clock = pygame.time.Clock()
@@ -46,9 +38,9 @@ class GameEngine:
 
     def stop(self):
         self.running = False
-    
+
     def update_game(self):
-        self.game.update()
+        self.game.advance_game()
 
     def render_updates(self):
         # Figure out how to render a list of updates

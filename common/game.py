@@ -27,7 +27,7 @@ class Game:
                 self.actions.append(action)
         self.game_tick += 1
 
-    def apply_action(self, action): 
+    def apply_action(self, action):
         if action.type == "move":
             # WIP action.ant.move(action.direction)
             # action.ant.energy -= 1
