@@ -48,8 +48,10 @@ class Board:
             tiles.append(self.get_tile(coord.x, coord.y + 1))
 
         return tiles
+    def flat_tiles(self):
+        return [tile for row in self.tiles for tile in row]
 
     def random_empty_tile(self):
-        flat_list = [item for sublist in self.board for item in sublist]
-        random.shuffle(flat_list)
-        return next(tile for tile in flat_list if tile.ant == None)
+        tiles = self.flat_tiles()
+        random.shuffle(tiles)
+        return next(tile for tile in tiles if tile.ant == None)
