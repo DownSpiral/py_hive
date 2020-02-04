@@ -1,31 +1,23 @@
 import pygame
 
-from common.game import Game
 from common.board import Board
 
 class GameEngine:
-    def __init__(self, game_settings, players):
-        if not pygame.get_init():
-            pygame.init()
-
-        # pixels per tile
-        self.ppt = 64
-
+    def __init__(self, game, display):
         self.running = False
         self.game_speed = 4
 
-        self.width = 1200
-        self.height = 800
-        self.display = pygame.display.set_mode((self.width, self.height))
-        self.game = Game(game_settings, players)
+        self.display = display
+        self.game = game
 
         # What is this clock? Should we use it for our game clock too?
         self.clock = pygame.time.Clock()
+        self.updates = []
 
     def start(self):
         self.running = True
 
-        self.render_board()
+        self.display.render_board(self.game.board)
 
         while self.running:
             # Process events
@@ -43,9 +35,7 @@ class GameEngine:
         self.game.advance_game()
 
     def render_updates(self):
-        # Figure out how to render a list of updates
-        pygame.display.flip()
-
+        self.display.render_updates(self.updates)
 
     def handle_event(self, event):
         if event.type == pygame.QUIT:
@@ -56,18 +46,3 @@ class GameEngine:
 
         if event.type == pygame.KEYDOWN:
             print('down')
-
-    def render_board(self):
-        self.display.fill((255,255,255))
-        for row in self.game.board.tiles:
-            for tile in row:
-                self.render_tile(tile)
-
-    def render_tile(self, tile):
-        (x, y) = (tile.coord.x, tile.coord.y)
-        (rx, ry) = (self.ppt * x, self.ppt * y)
-
-        self.render_square(rx, ry, self.ppt, tile.color())
-
-    def render_square(self, x, y, length, color):
-        pygame.draw.rect(self.display, color, pygame.Rect(x, y, length, length))

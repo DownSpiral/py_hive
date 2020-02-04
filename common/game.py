@@ -8,7 +8,7 @@ class Game:
     def __init__(self, settings, players):
         self.settings = settings
         self.players = players
-        self.board = Board(settings["height"], settings["width"], True)
+        self.board = Board(settings["board_height"], settings["board_width"], True)
         self.game_tick = 0
         self.actions = []
 
