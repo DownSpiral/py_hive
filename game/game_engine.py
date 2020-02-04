@@ -67,7 +67,7 @@ class GameEngine:
         (x, y) = (tile.coord.x, tile.coord.y)
         (rx, ry) = (self.ppt * x, self.ppt * y)
 
-        self.square(rx, ry, self.ppt, tile.color())
+        self.render_square(rx, ry, self.ppt, tile.color())
 
     def render_square(self, x, y, length, color):
         pygame.draw.rect(self.display, color, pygame.Rect(x, y, length, length))
