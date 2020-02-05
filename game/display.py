@@ -7,8 +7,8 @@ class Display:
 
         # pixels per tile
         self.ppt = 64
-        self.width = display_settings["display_width"]
-        self.height = display_settings["display_height"]
+        self.width = display_settings['display_width']
+        self.height = display_settings['display_height']
 
         self.display = pygame.display.set_mode((self.width, self.height))
 

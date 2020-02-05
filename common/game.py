@@ -7,10 +7,14 @@ from common.player import Player
 class Game:
     def __init__(self, settings):
         self.settings = settings
-        self.players = settings["players"]
-        self.board = Board(settings["board_height"], settings["board_width"], True)
+        self.board = Board(settings['board_height'], settings['board_width'], True)
         self.game_tick = 0
         self.actions = []
+
+        # Initialize players
+        self.players = []
+        for player in settings['player_settings']:
+            self.players.append(Player(1, player['ai'], player['color']))
 
         # Initialize ants
         self.ants = []
