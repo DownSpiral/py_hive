@@ -29,8 +29,8 @@ class Tile:
         else:
             return (150, 75, 0)
 
-    def surrounding_tiles(self):
-        return self.board.surrounding_tiles(self.coord)
+    def adjacent_tiles(self):
+        return self.board.adjacent_tiles(self.coord)
 
     def tile_from_dir(self, direction):
         return self.board.tile_from_dir(self, direction)

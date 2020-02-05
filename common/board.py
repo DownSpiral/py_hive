@@ -33,7 +33,7 @@ class Board:
         except KeyError:
             return None
 
-    def surrounding_tiles(self, coord):
+    def adjacent_tiles(self, coord):
         tiles = []
         # Left
         if coord.x == 0 and self.wrapping:
