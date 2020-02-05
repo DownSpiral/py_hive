@@ -13,8 +13,8 @@ class Game:
 
         # Initialize players
         self.players = []
-        for player in settings['player_settings']:
-            self.players.append(Player(1, player['ai'], player['color']))
+        for i, player in enumerate(settings['player_settings']):
+            self.players.append(Player(i, player['ai'], player['color']))
 
         # Initialize ants
         self.ants = []
