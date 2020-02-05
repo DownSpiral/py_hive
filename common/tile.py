@@ -1,8 +1,9 @@
 from common.coord import Coord
 
 class Tile:
-    def __init__(self, coord, item=None, item_qty=0, ant=None):
+    def __init__(self, coord, board, item=None, item_qty=0, ant=None):
         self.coord = coord
+        self.board = board
         self.item = item
         self.item_qty = item_qty
         self.ant = ant
@@ -27,3 +28,9 @@ class Tile:
             return self.ant.color()
         else:
             return (150, 75, 0)
+
+    def surrounding_tiles(self):
+        return self.board.surrounding_tiles(self.coord)
+
+    def tile_from_dir(self, direction):
+        return self.board.tile_from_dir(self, direction)

@@ -21,6 +21,18 @@ class Board:
     def get_tile(self, x, y):
         return self.tiles[y][x]
 
+    def tile_from_dir(self, tile, direction):
+        (x, y) = (tile.coord.x, tile.coord.y)
+        try:
+            return {
+                'left': self.get_tile(Coord(x - 1, y)),
+                'right': self.get_tile(Coord(x + 1, y)),
+                'up': self.get_tile(Coord(x, y - 1)),
+                'down': self.get_tile(Coord(x, y + 1)),
+            }[direction]
+        except KeyError:
+            return None
+
     def surrounding_tiles(self, coord):
         tiles = []
         # Left
@@ -48,6 +60,7 @@ class Board:
             tiles.append(self.get_tile(coord.x, coord.y + 1))
 
         return tiles
+
     def flat_tiles(self):
         return [tile for row in self.tiles for tile in row]
 
