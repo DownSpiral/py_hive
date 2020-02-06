@@ -8,6 +8,7 @@ if __name__ == '__main__':
     game_settings = {
         'board_width': 10,
         'board_height': 10,
+        'wrapping': True,
         'player_settings': player_settings
     }
     display_settings = {

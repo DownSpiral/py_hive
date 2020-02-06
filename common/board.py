@@ -26,7 +26,7 @@ class Board:
         if not self.is_coord_in_bounds(Coord(x, y)):
             return None
 
-        return self.tiles[y][x]
+        return self.tiles[y % self.height][x % self.width]
 
     def tile_from_dir(self, tile, direction):
         (x, y) = (tile.coord.x, tile.coord.y)
@@ -74,4 +74,7 @@ class Board:
         return next(tile for tile in tiles if tile.ant == None)
 
     def is_coord_in_bounds(self, coord):
+        if self.wrapping:
+            return True
+
         return coord.x >= 0 and coord.x < self.width and coord.y >= 0 and coord.y < self.height
