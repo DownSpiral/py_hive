@@ -29,7 +29,7 @@ class GameEngine:
                 self.handle_event(event)
 
             self.update_game()
-            self.render_updates()
+            self.display.render_board(self.game.board)
             self.clock.tick(self.game_speed)
 
     def stop(self):

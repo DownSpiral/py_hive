@@ -1,19 +1,24 @@
 class Action: # Lawsuit
     def __init__(self, ant, action_hash):
         self.ant = ant
+        self.board = ant.tile.board
         self.type = action_hash["type"]
         self.direction = action_hash["direction"]
 
+    def perform(self):
+        if self.type == "move":
+            new_tile = self.board.tile_from_dir(self.ant.tile, self.direction)
+            # This shouldn't be on the ant
+            self.ant.move(self.direction)
+
     def is_valid(self):
-        if action.type not in ('move'):
-          return False
-        if action.direction and action.direction in ('up', 'down', 'left', 'right'):
-          return False
+        if self.out_of_bounds():
+            return False
 
         return True
 
-    def perform(self):
-        if action.type == "move":
-            # WIP action.ant.move(action.direction)
-            # action.ant.energy -= 1
-            print("moving " + action.direction)
+    def out_of_bounds(self):
+        new_tile = self.board.tile_from_dir(self.ant.tile, self.direction)
+
+        if new_tile is None:
+            return True

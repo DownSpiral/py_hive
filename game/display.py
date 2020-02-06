@@ -17,6 +17,7 @@ class Display:
         pygame.display.flip()
 
     def render_board(self, board):
+        pygame.display.flip()
         self.display.fill((255,255,255))
         for row in board.tiles:
             for tile in row:

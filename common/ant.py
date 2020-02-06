@@ -16,9 +16,14 @@ class Ant:
         self.item_qty = 0
 
     def move(self, direction):
-        self.move_counts["direction"] += 1
+        self.move_counts[direction] += 1
+        new_tile = self.tile.tile_from_dir(direction)
+        if new_tile.ant is not None:
+            raise "wtf: validate me bitch"
+
+        new_tile.ant = self
         self.tile.ant = None
-        # WIP
+        self.tile = new_tile
 
     def to_dict(self):
         return copy.deepcopy({

@@ -3,6 +3,8 @@ from common.coord import Coord
 class Tile:
     def __init__(self, coord, board, item=None, item_qty=0, ant=None):
         self.coord = coord
+        self.x = coord.x
+        self.y = coord.y
         self.board = board
         self.item = item
         self.item_qty = item_qty
@@ -34,3 +36,6 @@ class Tile:
 
     def tile_from_dir(self, direction):
         return self.board.tile_from_dir(self, direction)
+
+    def is_in_bounds(self):
+        return self.board.is_coord_in_bounds(self.coord)
