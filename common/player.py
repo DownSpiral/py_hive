@@ -15,7 +15,7 @@ class Player:
         ant_data = ant.to_dict().update({
             'current_tile': ant.tile.to_dict,
             'adjacent_tiles': [
-                t.to_dict for t in board.adjacent_tiles(ant.tile.coord)
+                t.to_dict for t in board.adjacent_tiles((ant.tile.x, ant.tile.y))
             ]
         })
         return Action(ant, self.ai_func(ant_data))
