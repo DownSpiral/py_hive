@@ -15,14 +15,14 @@ class Game:
         self.game_tick = 0
         self.actions = []
 
-        # Initialize players
         self.players = []
-        for i, player in enumerate(settings['player_settings']):
-            self.players.append(Player(i, player['ai'], player['color']))
-
-        # Initialize ants
         self.ants = []
-        for player in self.players:
+        for i, player in enumerate(settings['player_settings']):
+            # Initialize players
+            player = Player(i, player['ai'], player['color'])
+            self.players.append(player)
+
+            # Initialize ants
             tile = self.board.random_empty_tile()
             self.ants.append(Ant(player, tile, "queen"))
 
