@@ -30,7 +30,8 @@ class Game:
         shuffle(self.ants)
         for ant in self.ants:
             action = ant.player.get_action_for_ant(ant, self.board)
-            if action.is_valid():
-                action.perform()
+            # Perform the action. If it succeeds, append it to actions
+            if action.perform():
+                # This will get big pretty fast if we don't flush it
                 self.actions.append(action)
         self.game_tick += 1

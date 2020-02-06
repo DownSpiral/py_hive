@@ -35,3 +35,6 @@ class Tile:
 
     def is_in_bounds(self):
         return self.board.is_coord_in_bounds((self.x, self.y))
+
+    def has_ant(self):
+        return self.ant is not None

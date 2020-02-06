@@ -5,8 +5,7 @@ class Display:
         if not pygame.get_init():
             pygame.init()
 
-        # pixels per tile
-        self.ppt = 64
+        self.ppt = display_settings['pixels_per_tile']
         self.width = display_settings['display_width']
         self.height = display_settings['display_height']
 
