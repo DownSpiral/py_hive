@@ -29,6 +29,8 @@ class GameEngine:
                 self.handle_event(event)
 
             self.update_game()
+            # self.render_updates()
+            # render the whole board
             self.display.render_board(self.game.board)
             self.clock.tick(self.game_speed)
 

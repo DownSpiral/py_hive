@@ -8,17 +8,24 @@ class Action: # Lawsuit
     def perform(self):
         if self.type == "move":
             new_tile = self.board.tile_from_dir(self.ant.tile, self.direction)
-            # This shouldn't be on the ant
-            self.ant.move(self.direction)
+            if not self.is_valid(new_tile):
+                return False
 
-    def is_valid(self):
-        if self.out_of_bounds():
+            self.ant.move_counts[self.direction] += 1
+            new_tile.ant = self.ant
+            self.ant.tile.ant = None
+            self.ant.tile = new_tile
+
+        return True
+
+    def is_valid(self, tile):
+        if self.tile_out_of_bounds(tile):
+            return False
+
+        if tile.has_ant():
             return False
 
         return True
 
-    def out_of_bounds(self):
-        new_tile = self.board.tile_from_dir(self.ant.tile, self.direction)
-
-        if new_tile is None:
-            return True
+    def tile_out_of_bounds(self, tile):
+        return tile is None

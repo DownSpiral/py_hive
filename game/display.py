@@ -5,8 +5,7 @@ class Display:
         if not pygame.get_init():
             pygame.init()
 
-        # pixels per tile
-        self.ppt = 64
+        self.ppt = display_settings['pixels_per_tile']
         self.width = display_settings['display_width']
         self.height = display_settings['display_height']
 
@@ -24,7 +23,7 @@ class Display:
                 self.render_tile(tile)
 
     def render_tile(self, tile):
-        (x, y) = (tile.coord.x, tile.coord.y)
+        (x, y) = (tile.x, tile.y)
         (rx, ry) = (self.ppt * x, self.ppt * y)
 
         self.render_square(rx, ry, self.ppt, tile.color())

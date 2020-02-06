@@ -15,16 +15,6 @@ class Ant:
         self.item = None
         self.item_qty = 0
 
-    def move(self, direction):
-        self.move_counts[direction] += 1
-        new_tile = self.tile.tile_from_dir(direction)
-        if new_tile.ant is not None:
-            raise "wtf: validate me bitch"
-
-        new_tile.ant = self
-        self.tile.ant = None
-        self.tile = new_tile
-
     def to_dict(self):
         return copy.deepcopy({
             "type": self.type,
@@ -35,4 +25,4 @@ class Ant:
         })
 
     def color(self):
-        return (255, 0, 0)
+        return self.player.get_color()
