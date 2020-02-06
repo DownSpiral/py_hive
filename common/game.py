@@ -26,13 +26,7 @@ class Game:
         shuffle(self.ants)
         for ant in self.ants:
             action = ant.player.get_action_for_ant(ant, self.board)
-            if action.is_valid_action:
-                self.apply_action(action)
+            if action.is_valid():
+                action.perform()
                 self.actions.append(action)
         self.game_tick += 1
-
-    def apply_action(self, action):
-        if action.type == "move":
-            # WIP action.ant.move(action.direction)
-            # action.ant.energy -= 1
-            print("moving " + action.direction)
