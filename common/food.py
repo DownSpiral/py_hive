@@ -12,7 +12,7 @@ class Food(Item):
     def to_dict(self):
         super_attrs = super().to_dict()
         attrs = {
-            'wat': 'wat'
+            'type': self.__class__.__name__.lower()
         }
         # Merge parent class to_dict attrs
         return { **super_attrs, **attrs }

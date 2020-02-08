@@ -4,10 +4,10 @@ from common.game import Game
 if __name__ == '__main__':
     game_settings = {
         'food_amount': 9,
-        'food_sources': 5,
+        'food_sources': 12,
         'board_settings': {
-            'width': 50,
-            'height': 40,
+            'width': 120,
+            'height': 90,
             'wrapping': True,
         },
         'players_settings': [
@@ -18,13 +18,15 @@ if __name__ == '__main__':
             { 'ai': "scripts.ais.random_walk", 'color': "red" },
             { 'ai': "scripts.ais.random_walk", 'color': "blue" },
             { 'ai': "scripts.harvester.perform", 'color': "random" },
-            { 'ai': "scripts.harvester.perform", 'color': "random" }
+            { 'ai': "scripts.harvester.perform", 'color': "random" },
+            { 'ai': "scripts.harvester.perform", 'color': "random" },
+            { 'ai': "scripts.harvester.perform", 'color': "random" },
         ]
     }
     display_settings = {
         'width': 1200,
         'height': 800,
-        'pixels_per_tile': 16,
+        'pixels_per_tile': 8,
         'game_speed': 12
     }
 

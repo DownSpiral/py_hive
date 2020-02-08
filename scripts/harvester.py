@@ -14,7 +14,7 @@ def has_food(tile):
     if not has_item(tile):
         return False
 
-    return tile['item']['type'] is 'food'
+    return tile['item']['type'] == 'food'
 
 def adjacent_food(adjacent_tiles):
     return [tile for tile in adjacent_tiles if has_food(tile)]
@@ -24,5 +24,7 @@ def perform(ant_data):
 
     # There aren't workers yet
     if is_queen(ant_data['type']):
-        if len(food) is 0:
-            return { 'type': 'harvest': 'direction': direction_of_food(food) }
+        if len(food) is not 0:
+            return { 'type': 'gather', 'direction': 'left' }
+
+    return { 'type': 'move', 'direction': choice(['left', 'right', 'up', 'down']) }

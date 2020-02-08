@@ -23,7 +23,7 @@ class Tile:
         return {
             'x': self.x,
             'y': self.y,
-            'item': item.to_dict() if self.has_item() else None,
+            'item': self.item.to_dict() if self.has_item() else None,
         }
 
     def color(self):
