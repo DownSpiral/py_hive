@@ -1,4 +1,4 @@
-from constants import *
+import constants
 from importlib import import_module
 
 from common.action import Action
@@ -21,4 +21,8 @@ class Player:
         return Action(ant, self.ai_func(ant_data))
 
     def color(self):
-        return COLORS[self.color_name]
+        # For random colors
+        if self.color_name is 'random':
+            return constants.random_color()
+
+        return constants.COLORS[self.color_name]

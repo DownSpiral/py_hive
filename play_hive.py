@@ -11,16 +11,21 @@ if __name__ == '__main__':
             'wrapping': True,
         },
         'players_settings': [
-            { 'ai': "scripts.foo.bar", 'color': "red" },
-            { 'ai': "scripts.bar.baz", 'color': "blue" },
-            { 'ai': "scripts.bar.baz", 'color': "black" }
+            { 'ai': "scripts.line.right", 'color': "random" },
+            { 'ai': "scripts.line.left", 'color': "random" },
+            { 'ai': "scripts.line.up", 'color': "random" },
+            { 'ai': "scripts.line.down", 'color': "random" },
+            { 'ai': "scripts.ais.random_walk", 'color': "random" },
+            { 'ai': "scripts.ais.random_walk", 'color': "random" },
+            { 'ai': "scripts.ais.random_walk", 'color': "random" },
+            { 'ai': "scripts.ais.random_walk", 'color': "random" }
         ]
     }
     display_settings = {
         'width': 1200,
         'height': 800,
         'pixels_per_tile': 16,
-        'game_speed': 24
+        'game_speed': 12
     }
 
     engine = GameEngine(game_settings, display_settings)
