@@ -15,6 +15,11 @@ class Ant:
         self.item = None
         self.item_qty = 0
 
+    def move(self, direction):
+        self.move_counts["direction"] += 1
+        self.tile.ant = None
+        # WIP
+
     def to_dict(self):
         return copy.deepcopy({
             "type": self.type,
@@ -25,4 +30,4 @@ class Ant:
         })
 
     def color(self):
-        return self.player.get_color()
+        return self.player.color()

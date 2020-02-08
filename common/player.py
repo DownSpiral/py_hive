@@ -1,3 +1,4 @@
+from constants import *
 from importlib import import_module
 
 from common.action import Action
@@ -20,11 +21,5 @@ class Player:
         })
         return Action(ant, self.ai_func(ant_data))
 
-    def get_color(self):
-        if self.color == 'red':
-            return (255, 0, 0)
-        if self.color == 'green':
-            return (0, 255, 0)
-        if self.color == 'blue':
-            return (0, 0, 255)
-        return (0, 0, 0)
+    def color(self):
+        return COLORS[self.color]

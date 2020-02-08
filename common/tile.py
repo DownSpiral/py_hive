@@ -1,3 +1,5 @@
+from constants import *
+
 class Tile:
     def __init__(self, coord, board, item=None, item_qty=0, ant=None):
         self.x, self.y = coord
@@ -22,10 +24,12 @@ class Tile:
         }
 
     def color(self):
-        if self.ant is not None:
-            return self.ant.color()
+        if self.has_ant():
+            return (0,244,0)
+        if self.has_item():
+            return self.item.color()
         else:
-            return (150, 75, 0)
+            return COLORS['brown']
 
     def adjacent_tiles(self):
         return self.board.adjacent_tiles((self.x, self.y))
@@ -38,3 +42,6 @@ class Tile:
 
     def has_ant(self):
         return self.ant is not None
+
+    def has_ant(self):
+        return self.item is not None

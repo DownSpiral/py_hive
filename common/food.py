@@ -1,3 +1,5 @@
+from constants import *
+
 class Food(Item):
     def __init__(self, **settings):
         self.quantity = settings['quantity']
@@ -7,3 +9,6 @@ class Food(Item):
         print(self.quantity)
         print(self.tile.x, self.tile.y)
         super().wat()
+
+    def color(self):
+        return COLORS['green']

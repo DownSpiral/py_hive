@@ -7,8 +7,8 @@ if __name__ == '__main__':
         { 'ai': "scripts.bar.baz", 'color': "green" }
     ]
     game_settings = {
-        'board_width': 30,
-        'board_height': 20,
+        'board_width': 40,
+        'board_height': 30,
         'wrapping': True,
         'player_settings': player_settings
     }
