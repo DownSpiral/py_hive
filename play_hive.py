@@ -3,7 +3,7 @@ from common.game import Game
 
 if __name__ == '__main__':
     game_settings = {
-        'food_amount': 9,
+        'food_amount': 50,
         'food_sources': 12,
         'board_settings': {
             'width': 120,

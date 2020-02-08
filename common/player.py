@@ -12,7 +12,7 @@ class Player:
         self.ai_func = getattr(module, func)
 
     def get_action_for_ant(self, ant, board):
-        ant_data = ant.to_dict(),
+        ant_data = ant.to_dict()
         tile_data = {
             'current_tile': ant.tile.to_dict(),
             'adjacent_tiles': [

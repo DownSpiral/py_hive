@@ -7,7 +7,12 @@ class Food(Item):
         super().__init__(**settings)
 
     def color(self):
-        return COLORS['green']
+        if self.quantity > 50:
+            return FOOD_COLORS['dense']
+        elif self.quantity > 20:
+            return FOOD_COLORS['medium']
+        else:
+            return FOOD_COLORS['light']
 
     def to_dict(self):
         super_attrs = super().to_dict()
