@@ -1,3 +1,4 @@
+from constants import *
 from common.food import Food
 
 class Tile:
@@ -23,10 +24,12 @@ class Tile:
         }
 
     def color(self):
-        if self.ant is not None:
-            return self.ant.color()
+        if self.has_ant():
+            return self.ant.player.color()
+        if self.has_item():
+            return self.item.color()
         else:
-            return (150, 75, 0)
+            return COLORS['brown']
 
     def adjacent_tiles(self):
         return self.board.adjacent_tiles((self.x, self.y))

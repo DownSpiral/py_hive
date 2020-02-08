@@ -11,20 +11,15 @@ import pdb
 
 class Game:
     def __init__(self, settings):
-        self.settings = settings
-        self.board = Board(
-            settings['board_height'],
-            settings['board_width'],
-            settings['wrapping']
-        )
+        self.board = Board(**settings['board_settings'])
         self.game_tick = 0
         self.actions = []
 
         self.players = []
         self.ants = []
-        for i, player in enumerate(settings['player_settings']):
+        for i, player_settings in enumerate(settings['players_settings']):
             # Initialize players
-            player = Player(i, player['ai'], player['color'])
+            player = Player(player_id = i, **player_settings)
             self.players.append(player)
 
             # Initialize ants
@@ -32,9 +27,8 @@ class Game:
             self.ants.append(Ant(player, tile, "queen"))
 
         # Initialize food
-
-        amt = 9
-        num_sources = 5
+        amt = settings['food_amount']
+        num_sources = settings['food_sources']
         tiles = self.board.flat_tiles()
         shuffle(tiles)
         for t in tiles[0:num_sources]:

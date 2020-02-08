@@ -1,15 +1,15 @@
+from constants import *
 from importlib import import_module
 
 from common.action import Action
 
 class Player:
-    def __init__(self, id, ai_module_name, color):
-        self.id = id
-        self.ai_module_name = ai_module_name
-        self.color = color
-        file, func = ai_module_name.rsplit('.', 1)
-        mod = import_module(file)
-        self.ai_func = getattr(mod, func)
+    def __init__(self, **settings):
+        self.id = settings['player_id']
+        self.color_name = settings['color']
+        file_name, func = settings['ai'].rsplit('.', 1)
+        module = import_module(file_name)
+        self.ai_func = getattr(module, func)
 
     def get_action_for_ant(self, ant, board):
         ant_data = ant.to_dict().update({
@@ -20,11 +20,5 @@ class Player:
         })
         return Action(ant, self.ai_func(ant_data))
 
-    def get_color(self):
-        if self.color == 'red':
-            return (255, 0, 0)
-        if self.color == 'green':
-            return (0, 255, 0)
-        if self.color == 'blue':
-            return (0, 0, 255)
-        return (0, 0, 0)
+    def color(self):
+        return COLORS[self.color_name]

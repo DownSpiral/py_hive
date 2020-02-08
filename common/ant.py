@@ -25,4 +25,4 @@ class Ant:
         })
 
     def color(self):
-        return self.player.get_color()
+        return self.player.color()

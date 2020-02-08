@@ -1,19 +1,22 @@
 import pygame
 
 class Display:
-    def __init__(self, display_settings):
+    def __init__(self, settings):
         if not pygame.get_init():
             pygame.init()
 
-        self.ppt = display_settings['pixels_per_tile']
-        self.width = display_settings['display_width']
-        self.height = display_settings['display_height']
+        self.width = settings['width']
+        self.height = settings['height']
+        self.ppt = settings['pixels_per_tile']
+        self.game_speed = settings['game_speed']
 
+        self.clock = pygame.time.Clock()
         self.display = pygame.display.set_mode((self.width, self.height))
 
-    def render_updates(self, updates):
+    def render_updates(self, board):
         # Figure out how to render updates
-        pygame.display.flip()
+        self.render_board(board)
+        self.clock.tick(self.game_speed)
 
     def render_board(self, board):
         pygame.display.flip()
@@ -23,10 +26,8 @@ class Display:
                 self.render_tile(tile)
 
     def render_tile(self, tile):
-        (x, y) = (tile.x, tile.y)
-        (rx, ry) = (self.ppt * x, self.ppt * y)
+        (pixel_width, pixel_height) = (self.ppt * tile.x, self.ppt * tile.y)
+        self.render_square(pixel_width, pixel_height, tile.color())
 
-        self.render_square(rx, ry, self.ppt, tile.color())
-
-    def render_square(self, x, y, length, color):
-        pygame.draw.rect(self.display, color, pygame.Rect(x, y, length, length))
+    def render_square(self, x, y, color):
+        pygame.draw.rect(self.display, color, pygame.Rect(x, y, self.ppt, self.ppt))

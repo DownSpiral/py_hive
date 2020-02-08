@@ -2,12 +2,11 @@ from common.tile import Tile
 import random
 
 class Board:
-    def __init__(self, height, width, wrapping=False):
-        if height <= 0 or width <= 0:
-            raise "Must have height and width > 1"
-        self.height = height
-        self.width = width
-        self.wrapping = wrapping
+    def __init__(self, **settings):
+        self.height = settings['height']
+        self.width = settings['width']
+        self.wrapping = settings['wrapping']
+
         self.tiles = [None] * self.height
         for i in range(self.height):
             self.tiles[i] = [None] * self.width
