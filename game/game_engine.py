@@ -8,40 +8,27 @@ class GameEngine:
     def __init__(self, game_settings, display_settings):
         self.display = Display(display_settings)
         self.game = Game(game_settings)
-
         self.running = False
-        self.updates = []
-
-        # fps the game runs at
-        # where should this live?
-        self.game_speed = 4
-        # What is this clock? Should we use it for our game clock too?
-        self.clock = pygame.time.Clock()
 
     def start(self):
-        self.running = True
-
         self.display.render_board(self.game.board)
 
+        self.running = True
         while self.running:
             # Process events
             for event in pygame.event.get():
                 self.handle_event(event)
 
             self.update_game()
-            # self.render_updates()
-            # render the whole board
-            self.display.render_board(self.game.board)
-            self.clock.tick(self.game_speed)
+            # Eventually, this should take in a list of all tiles that need to rendering, but
+            # until we hit performance issues, we'll just render the whole board every update
+            self.display.render_updates(self.game.board)
 
     def stop(self):
         self.running = False
 
     def update_game(self):
         self.game.advance_game()
-
-    def render_updates(self):
-        self.display.render_updates(self.updates)
 
     def handle_event(self, event):
         if event.type == pygame.QUIT:

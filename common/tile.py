@@ -1,18 +1,18 @@
 from constants import *
+from common.food import Food
 
 class Tile:
-    def __init__(self, coord, board, item=None, item_qty=0, ant=None):
+    def __init__(self, coord, board, item=None, ant=None):
         self.x, self.y = coord
         self.board = board
         self.item = item
-        self.item_qty = item_qty
         self.ant = ant
 
     def __str__(self):
         char = " "
         if self.ant != None:
             char = "a"
-        elif self.item == "food":
+        elif type(self.item) is Food:
             char = "."
         elif self.item == "rock":
             char = "0"
@@ -25,7 +25,7 @@ class Tile:
 
     def color(self):
         if self.has_ant():
-            return (0,244,0)
+            return self.ant.player.color()
         if self.has_item():
             return self.item.color()
         else:
@@ -43,5 +43,8 @@ class Tile:
     def has_ant(self):
         return self.ant is not None
 
-    def has_ant(self):
+    def has_item(self):
         return self.item is not None
+
+    def add_item(self, item):
+        self.item = item
