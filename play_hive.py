@@ -1,4 +1,5 @@
 from game.game_engine import GameEngine
+from common.game import Game
 
 if __name__ == '__main__':
     player_settings = [
@@ -18,6 +19,9 @@ if __name__ == '__main__':
         'pixels_per_tile': 16
     }
 
-    engine = GameEngine(game_settings, display_settings)
-    engine.start()
+    #engine = GameEngine(game_settings, display_settings)
+    #engine.start()
+
+    g = Game(game_settings)
+    print(g.board)
     print('all done')

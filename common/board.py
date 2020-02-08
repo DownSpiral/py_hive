@@ -12,7 +12,7 @@ class Board:
         for i in range(self.height):
             self.tiles[i] = [None] * self.width
             for j in range(self.width):
-                self.tiles[i][j] = Tile((j, i), self, "food", 1)
+                self.tiles[i][j] = Tile((j, i), self)
 
     def __str__(self):
         return '\n'.join(' '.join(map(str, sl)) for sl in self.tiles)
