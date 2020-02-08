@@ -13,3 +13,8 @@ class Item:
 
     def color(self):
         return COLORS['black']
+
+    def to_dict(self):
+        return {
+            'type': self.__class__.__name__.lower()
+        }

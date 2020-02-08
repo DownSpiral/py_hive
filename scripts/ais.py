@@ -1,3 +1,5 @@
+from random import choice
+
 def random_walk(ant_data):
     return { 'type': 'move', 'direction': choice(['left', 'right', 'up', 'down']) }
 

@@ -1,4 +1,5 @@
 import copy
+
 class Ant:
     def __init__(self, player, tile, type):
         self.type = type

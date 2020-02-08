@@ -11,14 +11,14 @@ if __name__ == '__main__':
             'wrapping': True,
         },
         'players_settings': [
-            { 'ai': "scripts.line.right", 'color': "random" },
-            { 'ai': "scripts.line.left", 'color': "random" },
-            { 'ai': "scripts.line.up", 'color': "random" },
-            { 'ai': "scripts.line.down", 'color': "random" },
-            { 'ai': "scripts.ais.random_walk", 'color': "random" },
-            { 'ai': "scripts.ais.random_walk", 'color': "random" },
-            { 'ai': "scripts.ais.random_walk", 'color': "random" },
-            { 'ai': "scripts.ais.random_walk", 'color': "random" }
+            { 'ai': "scripts.ais.right", 'color': "black" },
+            { 'ai': "scripts.ais.left", 'color': "black" },
+            { 'ai': "scripts.ais.up", 'color': "black" },
+            { 'ai': "scripts.ais.down", 'color': "black" },
+            { 'ai': "scripts.ais.random_walk", 'color': "red" },
+            { 'ai': "scripts.ais.random_walk", 'color': "blue" },
+            { 'ai': "scripts.harvester.perform", 'color': "random" },
+            { 'ai': "scripts.harvester.perform", 'color': "random" }
         ]
     }
     display_settings = {

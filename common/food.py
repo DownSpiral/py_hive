@@ -6,10 +6,13 @@ class Food(Item):
         self.quantity = settings['quantity']
         super().__init__(**settings)
 
-    def wat(self):
-        print(self.quantity)
-        print(self.tile.x, self.tile.y)
-        super().wat()
-
     def color(self):
         return COLORS['green']
+
+    def to_dict(self):
+        super_attrs = super().to_dict()
+        attrs = {
+            'wat': 'wat'
+        }
+        # Merge parent class to_dict attrs
+        return { **super_attrs, **attrs }

@@ -7,8 +7,6 @@ from common.ant import Ant
 from common.player import Player
 from common.food import Food
 
-import pdb
-
 class Game:
     def __init__(self, settings):
         self.board = Board(**settings['board_settings'])
