@@ -1,5 +1,4 @@
 from copy import deepcopy
-import pdb
 class Action:
     def __init__(self, ant, action_hash):
         self.ant = ant
@@ -26,9 +25,7 @@ class Action:
 
         if self.type == 'pick_up':
             if not self.is_valid_pick_up():
-                print('it aint valid')
                 return False
-            print('it valid')
             if self.item.quantity > self.quantity:
                 new_item = deepcopy(self.item)
                 new_item.quantity -= self.quantity
@@ -51,7 +48,6 @@ class Action:
         return True
 
     def is_valid_pick_up(self):
-        # pdb.set_trace()
         if type(self.quantity) == int and (self.quantity < 1 or self.quantity > self.ant.capacity):
             return False
         if self.ant.has_item():

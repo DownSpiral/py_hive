@@ -1,5 +1,6 @@
 import constants
 from importlib import import_module
+from random import choice
 
 from common.action import Action
 
@@ -11,6 +12,11 @@ class Player:
         module = import_module(file_name)
         self.ai_func = getattr(module, func)
 
+        # For random colors
+        if self.color_name is 'random':
+            self.color_name = choice(list(constants.COLORS.keys()))
+
+
     def get_action_for_ant(self, ant, board):
         ant_data = ant.to_dict()
         tile_data = {
@@ -20,8 +26,4 @@ class Player:
         return Action(ant, self.ai_func({ **ant_data, **tile_data }))
 
     def color(self):
-        # For random colors
-        if self.color_name is 'random':
-            return constants.random_color()
-
         return constants.COLORS[self.color_name]
