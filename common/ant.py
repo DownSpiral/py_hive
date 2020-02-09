@@ -14,7 +14,7 @@ class Ant:
             "right": 0
         }
         self.item = None
-        self.item_qty = 0
+        self.capacity = 10
 
     def to_dict(self):
         return copy.deepcopy({
@@ -22,7 +22,7 @@ class Ant:
             "player_id": self.player.id,
             "move_counts": self.move_counts,
             "item": self.item,
-            "item_qty": self.item_qty,
+            "capacity": self.capacity
         })
 
     def color(self):

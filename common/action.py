@@ -1,4 +1,5 @@
 from copy import deepcopy
+import pdb
 class Action:
     def __init__(self, ant, action_hash):
         self.ant = ant
@@ -7,8 +8,8 @@ class Action:
 
         if 'direction' in action_hash:
             self.direction = action_hash["direction"]
-        if 'item' in action_hash:
-            self.item = action_hash['item']
+            if self.type == 'pick_up':
+                self.item = self.ant.tile.tile_from_dir(self.direction).item
         if 'quantity' in action_hash:
             self.quantity = action_hash['quantity']
 
@@ -50,12 +51,13 @@ class Action:
         return True
 
     def is_valid_pick_up(self):
-        if type(self.quantity) == int and (self.quantity < 1 or self.quantity > self.ant.max_quantity):
+        # pdb.set_trace()
+        if type(self.quantity) == int and (self.quantity < 1 or self.quantity > self.ant.capacity):
             return False
         if self.ant.has_item():
             if type(self.ant.item) is not type(self.item):
                 return False
-            if self.ant.item.quantity + self.quantity > self.ant.max_quantity:
+            if self.ant.item.quantity + self.quantity > self.ant.capacity:
                 return False
         if not self.item in [self.ant.tile.item] + [t.item for t in self.ant.tile.adjacent_tiles()]:
             return False

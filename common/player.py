@@ -15,9 +15,7 @@ class Player:
         ant_data = ant.to_dict()
         tile_data = {
             'current_tile': ant.tile.to_dict(),
-            'adjacent_tiles': [
-                t.to_dict() for t in board.adjacent_tiles((ant.tile.x, ant.tile.y))
-            ]
+            'adjacent_tiles': { direction: board.adjacent_tiles_dict(ant.tile)[direction].to_dict() for direction in board.adjacent_tiles_dict(ant.tile).keys() }
         }
         return Action(ant, self.ai_func({ **ant_data, **tile_data }))
 

@@ -26,14 +26,18 @@ class Board:
 
         return self.tiles[y % self.height][x % self.width]
 
-    def tile_from_dir(self, tile, direction):
+    def adjacent_tiles_dict(self, tile):
         (x, y) = (tile.x, tile.y)
         return {
             'left': self.get_tile(x - 1, y),
             'right': self.get_tile(x + 1, y),
             'up': self.get_tile(x, y - 1),
             'down': self.get_tile(x, y + 1),
-        }[direction]
+        }
+
+
+    def tile_from_dir(self, tile, direction):
+        return self.adjacent_tiles_dict(tile)[direction]
 
     def adjacent_tiles(self, coord):
         tiles = []
