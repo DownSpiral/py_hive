@@ -17,13 +17,16 @@ class Ant:
         self.capacity = 10
 
     def to_dict(self):
-        return copy.deepcopy({
+        d = {
             "type": self.type,
             "player_id": self.player.id,
             "move_counts": self.move_counts,
-            "item": self.item,
             "capacity": self.capacity
-        })
+        }
+        if self.item is not None:
+            d["item"] = self.item.name
+            d["item_qty"] = self.item.quantity
+        return copy.deepcopy(d)
 
     def color(self):
         return self.player.color()

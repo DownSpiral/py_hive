@@ -1,4 +1,4 @@
-from copy import deepcopy
+from copy import copy
 class Action:
     def __init__(self, ant, action_hash):
         self.ant = ant
@@ -27,7 +27,7 @@ class Action:
             if not self.is_valid_pick_up():
                 return False
             if self.item.quantity > self.quantity:
-                new_item = deepcopy(self.item)
+                new_item = copy(self.item)
                 new_item.quantity -= self.quantity
                 self.item.quantity = self.quantity
             if self.ant.item:

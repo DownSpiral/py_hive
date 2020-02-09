@@ -5,6 +5,7 @@ class Food(Item):
     def __init__(self, **settings):
         self.quantity = settings['quantity']
         super().__init__(**settings)
+        self.name = 'food'
 
     def color(self):
         if self.quantity > 50:

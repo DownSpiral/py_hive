@@ -6,6 +6,7 @@ class Item:
     def __init__(self,**settings):
         self.tile = settings['tile']
         self.settings = settings
+        self.name = 'item'
 
     def wat(self):
         for k, v in self.settings:
