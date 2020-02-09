@@ -21,6 +21,9 @@ class Tile:
 
     def to_dict(self):
         return {
+            'x': self.x,
+            'y': self.y,
+            'item': self.item.to_dict() if self.has_item() else None,
         }
 
     def color(self):

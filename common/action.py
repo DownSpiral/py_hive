@@ -16,6 +16,9 @@ class Action: # Lawsuit
             self.ant.tile.ant = None
             self.ant.tile = new_tile
 
+        if self.type == 'gather':
+            print(f'player {self.ant.player.id} gathering')
+
         return True
 
     def is_valid(self, tile):
