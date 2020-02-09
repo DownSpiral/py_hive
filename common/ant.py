@@ -27,3 +27,6 @@ class Ant:
 
     def color(self):
         return self.player.color()
+
+    def has_item(self):
+        return self.item is not None
