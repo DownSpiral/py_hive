@@ -49,5 +49,14 @@ class Tile:
     def has_item(self):
         return self.item is not None
 
+    def has_food(self):
+        return type(self.item) is Food
+
     def add_item(self, item):
         self.item = item
+
+    def add_food(self, amt):
+        if self.has_food():
+            self.item.quantity += amt
+        elif not self.has_item():
+            self.item = Food(tile=self, quantity=amt)
