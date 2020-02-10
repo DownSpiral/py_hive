@@ -23,7 +23,7 @@ class Game:
 
             # Initialize ants
             tile = self.board.random_empty_tile()
-            self.ants.append(Ant(player, tile, "queen"))
+            self.ants.append(Ant(player=player, tile=tile, type="queen"))
 
         # Initialize food
         amt = settings['food_amount']

@@ -1,27 +1,48 @@
 import copy
 
 class Ant:
-    def __init__(self, player, tile, type):
-        self.type = type
-        self.player = player
-        self.tile = tile
-        if tile.ant == None:
-          tile.ant = self
+    def __init__(self, **settings):
+        self.type = settings['type']
+        self.player = settings['player']
+        self.tile = settings['tile']
+
+        self.item = None
+        if 'item' in settings:
+            self.item = settings['item']
+
+        if self.tile.ant == None:
+            self.tile.ant = self
+
         self.move_counts = {
             "up": 0,
             "down": 0,
             "left": 0,
             "right": 0
         }
-        self.item = None
-        self.capacity = 10
 
+        self.stats = {
+            'capacity': 10,
+            'max_health': 100,
+            'max_energy': 1000,
+            'health':  100,
+            'energy':  1000,
+        }
+
+
+    # attrs returned {
+    #     type:        queen, worker,
+    #     player_id:   the ant's owner,
+    #     move_counts: left, right, up, down,
+    #     stats:       defaults and current stats,
+    #     item?:       
+    #     item_qty?:
+    # }
     def to_dict(self):
         d = {
             "type": self.type,
             "player_id": self.player.id,
             "move_counts": self.move_counts,
-            "capacity": self.capacity
+            'stats': self.stats
         }
         if self.item is not None:
             d["item"] = self.item.name

@@ -48,12 +48,12 @@ class Action:
         return True
 
     def is_valid_pick_up(self):
-        if type(self.quantity) == int and (self.quantity < 1 or self.quantity > self.ant.capacity):
+        if type(self.quantity) == int and (self.quantity < 1 or self.quantity > self.ant.stats['capacity']):
             return False
         if self.ant.has_item():
             if type(self.ant.item) is not type(self.item):
                 return False
-            if self.ant.item.quantity + self.quantity > self.ant.capacity:
+            if self.ant.item.quantity + self.quantity > self.ant.stats['capacity']:
                 return False
         if not self.item in [self.ant.tile.item] + [t.item for t in self.ant.tile.adjacent_tiles()]:
             return False

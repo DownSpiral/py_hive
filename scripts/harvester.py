@@ -17,7 +17,7 @@ def has_food(tile):
     return tile['item']['type'] == 'food'
 
 def adjacent_food_tiles(adjacent_tiles):
-    return { direction: adjacent_tiles[direction] for direction in adjacent_tiles.keys() if has_food(adjacent_tiles[direction]) }
+    return { d: adjacent_tiles[d] for d in adjacent_tiles.keys() if has_food(adjacent_tiles[d]) }
 
 def perform(ant_data):
     food_tiles = adjacent_food_tiles(ant_data['adjacent_tiles'])
@@ -25,6 +25,13 @@ def perform(ant_data):
     # There aren't workers yet
     if is_queen(ant_data['type']):
         if len(food_tiles) is not 0:
-            return { 'type': 'pick_up', 'direction': choice(list(food_tiles.keys())), 'quantity': ant_data['capacity'] }
+            return {
+                'type': 'pick_up',
+                'direction': choice(list(food_tiles.keys())),
+                'quantity': ant_data['stats']['capacity']
+            }
 
-    return { 'type': 'move', 'direction': choice(['left', 'right', 'up', 'down']) }
+    return {
+        'type': 'move',
+        'direction': choice(['left', 'right', 'up', 'down'])
+    }
