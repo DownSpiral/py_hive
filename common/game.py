@@ -2,6 +2,7 @@ from random import shuffle
 from random import random
 from random import choice
 from math import ceil
+import math
 
 from common.board import Board
 from common.ant import Ant
@@ -44,6 +45,20 @@ class Game:
             nt = choice(tile.adjacent_tiles())
             self.gen_food(nt, amt, itr - 1)
 
+    def grow_food(self):
+        for t in self.board.flat_tiles():
+            if t.has_item and not t.has_food():
+                next
+            food_tiles = [t for t in t.adjacent_tiles() if t.has_food()]
+            if t.has_food():
+                food_tiles += [t]
+            num_food = len(food_tiles)
+            sum_food = sum([t.item.quantity for t in food_tiles])
+            prob = math.pow(num_food + 1, 3)
+            prob = prob * (1 + (sum_food/100))
+            if random() < (prob/100000):
+                t.add_food(10)
+
 
     def advance_game(self):
         shuffle(self.ants)
@@ -53,5 +68,6 @@ class Game:
             if action.perform():
                 # This will get big pretty fast if we don't flush it
                 self.actions.append(action)
+        self.grow_food()
         self.game_tick += 1
 
