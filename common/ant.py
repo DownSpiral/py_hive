@@ -1,7 +1,7 @@
 import copy
 
 class Ant:
-    WORKER_COST = 50
+    WORKER_COST = 25
 
     def __init__(self, **settings):
         self.type = settings['type']

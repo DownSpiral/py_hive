@@ -12,14 +12,14 @@ if __name__ == '__main__':
             'wrapping': True,
         },
         'players_settings': [
-            { 'ai': "scripts.harvester.perform", 'color': "random" },
-            { 'ai': "scripts.harvester.perform", 'color': "random" },
+            { 'ai': "scripts.harvester.perform", 'color': "blue" },
+            { 'ai': "scripts.harvester.perform", 'color': "red" },
         ]
     }
     display_settings = {
         'width': 1200,
         'height': 900,
-        'pixels_per_tile': 16,
+        'pixels_per_tile': 25,
         'game_speed': 12
     }
 

@@ -26,6 +26,10 @@ class Action:
             self.ant.tile = new_tile
             self.ant.subtract_energy(1)
 
+        # To do
+        #   Move this logic to the models
+        #   I removed the capacity check so
+        #   Need to add taking the min of what they pick_up with capacity
         if self.type == 'pick_up':
             if not self.is_valid_pick_up():
                 return False
@@ -70,11 +74,8 @@ class Action:
     def is_valid_pick_up(self):
         if type(self.quantity) == int and (self.quantity < 1 or self.quantity > self.ant.stats['capacity']):
             return False
-        if self.ant.has_item():
-            if type(self.ant.item) is not type(self.item):
-                return False
-            if self.ant.item.quantity + self.quantity > self.ant.stats['capacity']:
-                return False
+        if self.ant.has_item() and type(self.ant.item) is not type(self.item):
+            return False
         if not self.item in [self.ant.tile.item] + [t.item for t in self.ant.tile.adjacent_tiles()]:
             return False
 

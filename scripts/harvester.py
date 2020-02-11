@@ -17,7 +17,8 @@ def has_empty_tile(tiles):
     any([True for item in adjacent_items(tiles) if item is None])
 
 def can_lay_egg(ant_data):
-    ant_data['energy'] > 50 and has_empty_tile(ant_data['adjacent_tiles'])
+    print(ant_data['energy'], ant_data['energy'] > 25 and has_empty_tile(ant_data['adjacent_tiles']))
+    return ant_data['energy'] > 25 and has_empty_tile(ant_data['adjacent_tiles'])
 
 def has_food(ant_data):
     return 'item' in ant_data and ant_data['item'] == 'food' and ant_data['item_qty'] > 0
@@ -53,7 +54,6 @@ def perform(ant_data):
 
             }
         if len(food_tiles) is not 0 and should_pick_up(ant_data):
-            print('picking food up')
             return {
                 'type': 'pick_up',
                 'direction': choice(list(food_tiles.keys())),
