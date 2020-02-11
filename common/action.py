@@ -56,19 +56,6 @@ class Action:
             self.ant.subtract_food(1)
             self.ant.add_energy(25)
 
-        if self.type == 'lay_egg':
-            if not self.is_valid_lay_egg():
-                return False
-
-            print('laying an egg')
-
-        if self.type == 'eat':
-            if not self.is_valid_eat():
-                return False
-
-            print('eating')
-
-
         return True
 
     def is_valid_move(self, tile):

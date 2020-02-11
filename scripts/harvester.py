@@ -6,12 +6,6 @@ def is_worker(ant_type):
 def is_queen(ant_type):
     return ant_type is 'queen'
 
-def has_item(tile):
-    return tile['item'] is not None
-
-def has_food(tile):
-    return has_item(tile) and tile['item']['type'] == 'food'
-
 def adjacent_food_tiles(tiles):
     return { d: tile for d, tile in tiles.items() if tile['item'] is not None and tile['item']['type'] == 'food' }
 
@@ -38,19 +32,6 @@ def should_pick_up(ant_data):
         return True
 
     return False
-
-def adjacent_items(adjacent_tiles):
-    return [tile.item for tile in adjacent_tiles.values()]
-
-# return true if there is at least one free tile
-def has_empty_tile(tiles):
-    any([True for item in adjacent_items(tiles) if item is None])
-
-def can_lay_egg(ant_data):
-    ant_data['energy'] > 50 and has_empty_tile(ant_data['adjacent_tiles'])
-
-def should_eat(ant_data):
-    return ant_data['energy'] < 15 and ant_data['item_qty'] > 0
 
 def perform(ant_data):
     adjacent_tiles = ant_data['adjacent_tiles']
