@@ -36,6 +36,19 @@ class Action:
                 self.ant.item = self.item
                 self.item.tile = None
 
+        if self.type == 'lay_egg':
+            if not self.is_valid_lay_egg():
+                return False
+
+            print('laying an egg')
+
+        if self.type == 'eat':
+            if not self.is_valid_eat():
+                return False
+
+            print('eating')
+
+
         return True
 
     def is_valid_move(self, tile):
@@ -59,6 +72,24 @@ class Action:
             return False
 
         return True
+
+
+    # The ant can lay the egg if:
+    #   it is a queen
+    #   it has enough energy
+    #   it has selected an appropriate square
+    def is_valid_lay_egg(self):
+        if not self.ant.is_queen():
+            return False
+
+        if self.ant.current_energy() < Ant.WORKER_COST:
+            return False
+
+        tile_for_egg = self.ant.tile.tile_from_dir(self.direction)
+        if tile_for_egg.has_item():
+            return False
+
+
 
     def tile_out_of_bounds(self, tile):
         return tile is None

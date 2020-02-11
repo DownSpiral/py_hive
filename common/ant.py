@@ -1,6 +1,8 @@
 import copy
 
 class Ant:
+    WORKER_COST = 50
+
     def __init__(self, **settings):
         self.type = settings['type']
         self.player = settings['player']
@@ -42,7 +44,7 @@ class Ant:
             "type": self.type,
             "player_id": self.player.id,
             "move_counts": self.move_counts,
-            'stats': self.stats
+            **self.stats
         }
         if self.item is not None:
             d["item"] = self.item.name
@@ -54,3 +56,9 @@ class Ant:
 
     def has_item(self):
         return self.item is not None
+
+    def is_queen(self):
+        return self.type == 'queen'
+
+    def current_energy(self):
+        return self.stats['energy']
