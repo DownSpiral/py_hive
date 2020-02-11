@@ -1,4 +1,6 @@
 from copy import copy
+from common.food import Food
+
 class Action:
     def __init__(self, ant, action_hash):
         self.ant = ant
@@ -22,6 +24,7 @@ class Action:
             new_tile.ant = self.ant
             self.ant.tile.ant = None
             self.ant.tile = new_tile
+            self.ant.subtract_energy(1)
 
         if self.type == 'pick_up':
             if not self.is_valid_pick_up():
@@ -35,6 +38,23 @@ class Action:
             else:
                 self.ant.item = self.item
                 self.item.tile = None
+            self.ant.subtract_energy(1)
+
+        if self.type == 'lay_egg':
+            if not self.is_valid_lay_egg():
+                return False
+
+            print('laying an egg')
+            self.ant.subtract_energy(1)
+
+        if self.type == 'eat':
+            if not self.is_valid_eat():
+                return False
+
+            print('eating!')
+
+            self.ant.subtract_food(1)
+            self.ant.add_energy(25)
 
         return True
 
@@ -58,6 +78,31 @@ class Action:
         if not self.item in [self.ant.tile.item] + [t.item for t in self.ant.tile.adjacent_tiles()]:
             return False
 
+        return True
+
+    # The ant can lay the egg if:
+    #   it is a queen
+    #   it has enough energy
+    #   it has selected an appropriate square
+    def is_valid_lay_egg(self):
+        if not self.ant.is_queen():
+            return False
+
+        if self.ant.current_energy() < Ant.WORKER_COST:
+            return False
+
+        tile_for_egg = self.ant.tile.tile_from_dir(self.direction)
+        if tile_for_egg.has_item():
+            return False
+
+    def is_valid_eat(self):
+        print('valid eat?')
+        if not type(self.ant.item) == Food:
+            print('naw type')
+            return False
+        if self.ant.item.quantity <= 0:
+            print('naw quant')
+            return False
         return True
 
     def tile_out_of_bounds(self, tile):

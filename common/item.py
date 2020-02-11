@@ -8,10 +8,6 @@ class Item:
         self.settings = settings
         self.name = 'item'
 
-    def wat(self):
-        for k, v in self.settings:
-            print(f"{k} wat {v}")
-
     def color(self):
         return COLORS['black']
 
