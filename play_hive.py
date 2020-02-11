@@ -3,31 +3,23 @@ from common.game import Game
 
 if __name__ == '__main__':
     game_settings = {
-        'food_amount': 10,
-        'food_sprawl': 100,
-        'food_sources': 50,
+        'food_amount': 5,
+        'food_sprawl': 75,
+        'food_sources': 10,
         'board_settings': {
-            'width': 4,
-            'height': 6,
+            'width': 30,
+            'height': 20,
             'wrapping': True,
         },
         'players_settings': [
-            # { 'ai': "scripts.ais.right", 'color': "black" },
-            # { 'ai': "scripts.ais.left", 'color': "black" },
-            # { 'ai': "scripts.ais.up", 'color': "black" },
-            # { 'ai': "scripts.ais.down", 'color': "black" },
-            # { 'ai': "scripts.ais.random_walk", 'color': "red" },
-            # { 'ai': "scripts.ais.random_walk", 'color': "blue" },
-            # { 'ai': "scripts.harvester.perform", 'color': "random" },
-            # { 'ai': "scripts.harvester.perform", 'color': "random" },
-            # { 'ai': "scripts.harvester.perform", 'color': "random" },
+            { 'ai': "scripts.harvester.perform", 'color': "random" },
             { 'ai': "scripts.harvester.perform", 'color': "random" },
         ]
     }
     display_settings = {
-        'width': 800,
-        'height': 800,
-        'pixels_per_tile': 25,
+        'width': 1200,
+        'height': 900,
+        'pixels_per_tile': 16,
         'game_speed': 12
     }
 

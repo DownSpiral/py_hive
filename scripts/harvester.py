@@ -44,7 +44,7 @@ def adjacent_items(adjacent_tiles):
 
 # return true if there is at least one free tile
 def has_empty_tile(tiles):
-    any([True for item in adjacent_items(tiles) if item is None)
+    any([True for item in adjacent_items(tiles) if item is None])
 
 def can_lay_egg(ant_data):
     ant_data['energy'] > 50 and has_empty_tile(ant_data['adjacent_tiles'])
