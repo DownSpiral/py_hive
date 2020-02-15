@@ -9,15 +9,17 @@ def is_queen(ant_type):
 def adjacent_food_tiles(tiles):
     return { d: tile for d, tile in tiles.items() if tile['item'] is not None and tile['item']['type'] == 'food' }
 
+def adjacent_empty_tiles(tiles):
+    return { d: tile for d, tile in tiles.items() if tile['item'] is None }
+
 def adjacent_items(adjacent_tiles):
     return [tile['item'] for tile in adjacent_tiles.values()]
 
 # return true if there is at least one free tile
 def has_empty_tile(tiles):
-    any([True for item in adjacent_items(tiles) if item is None])
+    return any([True for item in adjacent_items(tiles) if item is None])
 
 def can_lay_egg(ant_data):
-    print(ant_data['energy'], ant_data['energy'] > 25 and has_empty_tile(ant_data['adjacent_tiles']))
     return ant_data['energy'] > 25 and has_empty_tile(ant_data['adjacent_tiles'])
 
 def has_food(ant_data):
@@ -42,17 +44,16 @@ def perform(ant_data):
     if is_queen(ant_data['type']):
         # Eat if it's running low on energy
         if should_eat(ant_data):
-            print('eating')
             return { 'type': 'eat' }
 
-        # Eat if it's running low on energy
+        # Lay an egg if it can
         if can_lay_egg(ant_data):
-            print('laying')
             return {
                 'type': 'lay_egg',
-                'direction': choice(adjacent_tiles.keys()),
-
+                'direction': choice(list(adjacent_empty_tiles(adjacent_tiles).keys()))
             }
+
+        # Pick up food if not full
         if len(food_tiles) is not 0 and should_pick_up(ant_data):
             return {
                 'type': 'pick_up',
@@ -60,6 +61,7 @@ def perform(ant_data):
                 'quantity': ant_data['capacity']
             }
 
+    # Random walk
     return {
         'type': 'move',
         'direction': choice(['left', 'right', 'up', 'down'])

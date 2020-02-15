@@ -7,8 +7,8 @@ if __name__ == '__main__':
         'food_sprawl': 75,
         'food_sources': 10,
         'board_settings': {
-            'width': 30,
-            'height': 20,
+            'width': 50,
+            'height': 30,
             'wrapping': True,
         },
         'players_settings': [
@@ -17,7 +17,7 @@ if __name__ == '__main__':
         ]
     }
     display_settings = {
-        'width': 1200,
+        'width': 1400,
         'height': 900,
         'pixels_per_tile': 25,
         'game_speed': 12

@@ -65,9 +65,8 @@ class Game:
         for ant in self.ants:
             action = ant.player.get_action_for_ant(ant, self.board)
             # Perform the action. If it succeeds, append it to actions
-            if action.perform():
+            if action.perform(self):
                 # This will get big pretty fast if we don't flush it
                 self.actions.append(action)
         self.grow_food()
         self.game_tick += 1
-

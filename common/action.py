@@ -1,5 +1,6 @@
 from copy import copy
 from common.food import Food
+from common.ant import Ant
 
 class Action:
     def __init__(self, ant, action_hash):
@@ -14,7 +15,7 @@ class Action:
         if 'quantity' in action_hash:
             self.quantity = action_hash['quantity']
 
-    def perform(self):
+    def perform(self, game):
         if self.type == "move":
             new_tile = self.board.tile_from_dir(self.ant.tile, self.direction)
             if not self.is_valid_move(new_tile):
@@ -46,10 +47,15 @@ class Action:
 
         if self.type == 'lay_egg':
             if not self.is_valid_lay_egg():
+                print('laying an egg')
                 return False
 
             print('laying an egg')
-            self.ant.subtract_energy(1)
+            self.ant.subtract_energy(Ant.WORKER_COST)
+            tile_for_egg = self.ant.tile.tile_from_dir(self.direction)
+            new_ant = Ant(player=self.ant.player, tile=tile_for_egg, type='queen')
+            game.ants.append(new_ant)
+            tile_for_egg.ant = new_ant
 
         if self.type == 'eat':
             if not self.is_valid_eat():
@@ -83,14 +89,19 @@ class Action:
 
     def is_valid_lay_egg(self):
         if not self.ant.is_queen():
+            print("not queen")
             return False
 
         if self.ant.current_energy() < Ant.WORKER_COST:
+            print("not enough energy")
             return False
 
         tile_for_egg = self.ant.tile.tile_from_dir(self.direction)
         if tile_for_egg.has_item():
+            print("tile in da way")
             return False
+
+        return True
 
     def is_valid_eat(self):
         print('valid eat?')
